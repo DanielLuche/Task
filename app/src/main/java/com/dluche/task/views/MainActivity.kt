@@ -1,4 +1,4 @@
-package com.dluche.task
+package com.dluche.task.views
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
+import com.dluche.task.R
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
