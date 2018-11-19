@@ -3,6 +3,7 @@ package com.dluche.task.business
 import android.content.Context
 import com.dluche.task.R
 import com.dluche.task.constants.TaskConstants
+import com.dluche.task.entities.UserEntity
 import com.dluche.task.repository.UserRepository
 import com.dluche.task.util.SecurityPreferences
 import com.dluche.task.util.ValidationException
@@ -33,4 +34,18 @@ class UserBusiness(val context: Context) {
             throw e
         }
     }
+    //
+    fun login(email:String , password: String){
+        val user: UserEntity? = mUserRepository.get(email, password)
+        //
+        if(user != null){
+            //Salva dados od usr nas preferencias
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID,user.id.toString())
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_NAME,user.name)
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_EMAIL,user.email)
+        }else{
+
+        }
+    }
+
 }
