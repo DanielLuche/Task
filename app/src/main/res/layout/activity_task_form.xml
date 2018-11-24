@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.TaskFormActivity">
+
+    <EditText
+        android:id="@+id/actTaskFormEtDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/descricao"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Spinner
+        android:id="@+id/actTaskFormSpPriority"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actTaskFormEtDesc" />
+
+    <CheckBox
+        android:id="@+id/actTaskFormChkComplete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/completa"
+        app:layout_constraintTop_toBottomOf="@id/actTaskFormSpPriority" />
+    <Button
+        android:id="@+id/actTaskFormBtnDate"
+        app:layout_constraintTop_toBottomOf="@id/actTaskFormChkComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Selecionar Data"
+        />
+    <Button
+        android:id="@+id/actTaskFormBtnSave"
+        app:layout_constraintTop_toBottomOf="@id/actTaskFormBtnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Adicionar Tarefa"
+        />
+
+</android.support.constraint.ConstraintLayout>
