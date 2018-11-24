@@ -13,4 +13,11 @@
     <string name="informe_todos_os_campos">Informe todos os campos</string>
     <string name="erro_generico">Algo de errado aconteceu. Tente novamente!!!</string>
     <string name="email_em_uso">Email ja esta em uso !!!</string>
+    <string name="login">Entrar</string>
+    <string name="login_error_msg">Usuario e/ ou senha incorretos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="descricao">Descrição</string>
+    <string name="completa">Completa</string>
 </resources>

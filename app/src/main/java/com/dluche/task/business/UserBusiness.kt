@@ -35,16 +35,17 @@ class UserBusiness(val context: Context) {
         }
     }
     //
-    fun login(email:String , password: String){
+    fun login(email:String , password: String): Boolean{
         val user: UserEntity? = mUserRepository.get(email, password)
         //
-        if(user != null){
+        return if(user != null){
             //Salva dados od usr nas preferencias
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID,user.id.toString())
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_NAME,user.name)
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_EMAIL,user.email)
+            true
         }else{
-
+            false
         }
     }
 

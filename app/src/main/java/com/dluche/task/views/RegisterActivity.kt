@@ -1,5 +1,6 @@
 package com.dluche.task.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -43,6 +44,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             val password = actRegisterEtPwd.text.trim().toString()
             //faz o insert
             mUserBusiness.insert(name,email,password)
+            //
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }catch (e: ValidationException){
             Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
         } catch (e: Exception){
