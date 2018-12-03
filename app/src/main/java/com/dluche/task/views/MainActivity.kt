@@ -12,12 +12,16 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import com.dluche.task.R
+import com.dluche.task.business.PriorityBusiness
 import com.dluche.task.constants.TaskConstants
+import com.dluche.task.repository.PriorityCacheConstants
 import com.dluche.task.util.SecurityPreferences
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var mSecurityPreferences : SecurityPreferences
+    private lateinit var mPriorityBusiness : PriorityBusiness
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +40,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
         //instancia var lateinit
         mSecurityPreferences = SecurityPreferences(this)
-
+        mPriorityBusiness = PriorityBusiness(this)
+        //
+        loadPriorityCache()
         startDefaultFragment()
+    }
+
+    private fun loadPriorityCache() {
+        PriorityCacheConstants.setCache(mPriorityBusiness.getList())
     }
 
     override fun onBackPressed() {
