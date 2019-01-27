@@ -115,6 +115,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             //
             mTaskBusiness.insert(taskEntity)
             //
+            finish()
         }catch (e: Exception){
             Toast.makeText(this,R.string.erro_generico,Toast.LENGTH_LONG).show()
         }

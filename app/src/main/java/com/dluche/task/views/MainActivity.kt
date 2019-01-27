@@ -64,8 +64,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id = item.itemId
         //
         when (id) {
-            R.id.nav_done -> fragment = TaskListFragment.newInstance()
-            R.id.nav_todo -> fragment = TaskListFragment.newInstance()
+            R.id.nav_done -> fragment = TaskListFragment.newInstance(TaskConstants.TASKFILTER.COMPLETE)
+            R.id.nav_todo -> fragment = TaskListFragment.newInstance(TaskConstants.TASKFILTER.TODO)
             R.id.nav_logout -> handleLogout()
         }
         if(id != R.id.nav_logout ) {
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun startDefaultFragment() {
-        val fragment = TaskListFragment.newInstance()
+        val fragment = TaskListFragment.newInstance(TaskConstants.TASKFILTER.TODO)
         supportFragmentManager.beginTransaction().replace(R.id.mainFrameContent,fragment).commit()
     }
 

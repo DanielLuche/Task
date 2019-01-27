@@ -23,24 +23,28 @@ class TaskListFragment : Fragment(), View.OnClickListener {
     private lateinit var mRecyclerTaskList: RecyclerView
     private lateinit var mTaskBusiness: TaskBusiness
     private lateinit var mSecurityPreferences: SecurityPreferences
+    private var mTaskFilter = 0
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(taskFilter: Int) =
                 TaskListFragment().apply {
-                    //                    arguments = Bundle().apply {
-//                        putString(ARG_PARAM1, param1)
-//                        putString(ARG_PARAM2, param2)
-//                    }
+                         arguments = Bundle().apply {
+                         putInt(TaskConstants.TASKFILTER.KEY, taskFilter)
+                    }
                 }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }*/
+        //if abaixo explicado no curso
+//        if(arguments != null){
+//             mTaskFilter = arguments?.getInt(TaskConstants.TASKFILTER.KEY)
+//        }
+        //codigo melhorada pelo novo plugin kotlin
+        arguments?.let {
+            mTaskFilter = it.getInt(TaskConstants.TASKFILTER.KEY)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,17 +59,17 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         // 1 - Obter o elemento
         mRecyclerTaskList = rootView.findViewById(R.id.fragTaskListRvTaskList)
         // 2 - Definir um com.dluche.task.adapter com item
-        val taskList = mTaskBusiness.getList(mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_ID).toInt())
-
-        for(i in 0..50){
-            taskList.add(taskList[0].copy(description = "Descricao $i"))
-        }
-
-        mRecyclerTaskList.adapter = TaskListAdapter(taskList)
+        //inicia adapter com lista vazia, pois será carregada no onResume
+        mRecyclerTaskList.adapter = TaskListAdapter(mutableListOf())
         // 3 - Definir um layout
         mRecyclerTaskList.layoutManager = LinearLayoutManager(mContext)
         //
         return rootView
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadTasks()
     }
 
     override fun onClick(v: View) {
@@ -74,5 +78,9 @@ class TaskListFragment : Fragment(), View.OnClickListener {
                 startActivity(Intent(mContext,TaskFormActivity::class.java))
             }
         }
+    }
+
+    private fun loadTasks() {
+        mRecyclerTaskList.adapter = TaskListAdapter(mTaskBusiness.getList())
     }
 }
